@@ -1,111 +1,126 @@
-  body{
-      font-family: sans-serif;
-      padding: 40px;
-      background: white;
-    }
-    input{
-      padding: 10px;
-      width: 300px;
-      font-size: 16px;
-    }
-    #suggestions{
-      border: 1px solid #ccc;
-      width: 300px;
-      max-height: 150px;
-      overflow-y: auto;
-      margin-top: 4px;
-      padding: 0 list-style: none;
-      background: white;
-    }
-    #suggestions li{
-      padding: 8px;
-      cursor: pointer;
-    }
-    #suggestions li:hover{
-      background-color: black;
-    }
+  body {
+    font-family: sans-serif;
+    padding: 40px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
 
-    * {box-sizing: border-box}
+  input {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+  }
 
-/* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 15%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
+  #suggestions {
+    border: 1px solid #ccc;
+    width: 300px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 4px;
+    padding: 0;
+    list-style: none;
+    background: white;
+  }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+  #suggestions li {
+    padding: 8px;
+    cursor: pointer;
+  }
 
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+  #suggestions li:hover {
+    background-color: black;
+  }
 
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: 3;
-  cursor: pointer;
-  width: 7%;
-  opacity: 0.9;
-  border-radius: 30px;
-}
+  * {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
 
-button:hover {
-  opacity:1;
-}
+  /* Full-width input fields */
+  input[type=text],
+  input[type=password] {
+    width: 15%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-  width: 9%;
-  margin-right: 50px;
-}
+  input[type=text]:focus,
+  input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 9%;
-  
-}
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
+  /* Set a style for all buttons */
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 3;
+    cursor: pointer;
+    width: 7%;
+    opacity: 0.9;
+    border-radius: 30px;
+  }
 
-}
+  button:hover {
+    opacity: 1;
+  }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+    width: 9%;
+    margin-right: 50px;
+  }
 
-#signinbtn {
-    text-decoration: none;
-}
+  /* Float cancel and signup buttons and add an equal width */
+  .cancelbtn,
+  .signupbtn {
+    float: left;
+    width: 9%;
 
+  }
 
-#column {
+  /* Add padding to container elements */
+  .container {
+    padding: 16px;
     display: flex;
     flex-direction: column;
-}
+    margin: auto;
 
-.form-card {
+  }
+
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  #signinbtn {
+    text-decoration: none;
+  }
+
+
+  #column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-card {
     max-width: 1100px;
     background-color: #f1f1f1;
     padding: 20px;
@@ -114,55 +129,83 @@ button:hover {
     position: absolute;
     left: 600px;
     margin-top: 70px
-}
+  }
 
-* {
-   box-sizing: border-box;
-   font-family: "Poppins", sans-serif;
-   background-color: #30a6ff;
-}
+  * {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    /* background-color: white; */
+  }
 
-.autocomplete {
-   position: relative;
-   display: inline-block;
-   width: 300px;
-   position: absolute;
-   transform: translate(-50%);
-   left: 50%;
-   top: 20px;
-}
+  .autocomplete {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    width: 900px;
+    margin: 40px auto;
+    border-radius: 50px;
+  }
 
-input[type="text"] {
-   width: 100%;
-   padding: 10px;
-   font-size: 16px;
-   border: none;
-   border-radius: 4px;
-   background-color: #ffffff;
-}
-s
-.autocomplete-items {
-   position: absolute;
-   background-color: #30a6ff;
-   border-bottom: none;
-   z-index: 99;
-   top: 100%;
-   left: 0;
-   right: 0;
-}
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 60px;
+    background-color: #ffffff;
+  }
 
-.autocomplete-items div {
-   padding: 10px;
-   cursor: pointer;
-   background-color: #ffffff;
-   border-bottom: 1px solid #d4d4d4;
-}
+  .autocomplete-items {
+    position: absolute;
+    background-color: #30a6ff;
+    border-bottom: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
 
-.autocomplete-items div:hover {
-   background-color: #e9e9e9;
-}
+  }
 
-.autocomplete-active {
-   background-color: #000000 !important;
-   color: #ffffff;
-}
+  #favoritestitle {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-bottom: 1px solid #d4d4d4;
+  }
+
+  .autocomplete-items div:hover {
+    background-color: #e9e9e9;
+  }
+
+  .autocomplete-active {
+    background-color: #000000 !important;
+    color: #ffffff;
+  }
+
+  h1 {
+    margin: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 50%;
+    top: -50px;
+  }  
+
+  body {
+  background-image: url('/Users/kcyro/Downloads/feb16a362d15c841368af58e29a0efd044f89af63d0578de75fcffd67eebd0dd.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
