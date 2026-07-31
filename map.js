@@ -1,72 +1,104 @@
 let userLocation = null;
 
-const foodLoc = [
-  {
-    name: "Michael's Pizzeria",
-    type: "Pizza",
-    address: "5616 E 2nd St, Long Beach, CA 90803",
-    lat: 33.7554,
-    lng: -118.1228
-  },
-  {
-    name: "Milana's New York Pizzeria",
-    type: "Pizza",
-    address: "165 E 4th St, Long Beach, CA 90802",
-    lat: 33.7719,
-    lng: -118.1912
-  },
-  {
-    name: "The 4th Horseman",
-    type: "Pizza",
-    address: "121 W 4th St, Long Beach, CA 90802",
-    lat: 33.7716,
-    lng: -118.1944
-  },
-  {
-    name: "Sushi Mafia",
-    type: "Sushi",
-    address: "649 E Broadway, Long Beach, CA 90802",
-    lat: 33.7650,
-    lng: -118.1824
-  }
-];
+const markersGroup = L.layerGroup();
 
 const map = L.map("map").setView([33.7749, -118.1937], 13);
+markersGroup.addTo(map);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
-foodLoc.forEach(location => {
-  L.marker([location.lat, location.lng])
-    .addTo(map)
-    .bindPopup(
-      `<b>${location.name}</b><br>${location.type}<br>${location.address}`
-    );
-});
+function fetchRealLocations(query, lat, lng) {
+  markersGroup.clearLayers();
 
-const selectedFood = localStorage.getItem("selectedFood");
+  const overpassQuery = `
+[out:json][timeout:25];
+(
+  node["amenity"="restaurant"](around:4828,${lat},${lng});
+  way["amenity"="restaurant"](around:4828,${lat},${lng});
+  relation["amenity"="restaurant"](around:4828,${lat},${lng});
 
-if (selectedFood) {
-  const points = foodLoc
-    .filter(place =>
-      place.name.toLowerCase().includes(selectedFood.toLowerCase()) ||
-      place.type.toLowerCase().includes(selectedFood.toLowerCase())
-    )
-    .map(place => [place.lat, place.lng]);
+  node["amenity"="fast_food"](around:4828,${lat},${lng});
+  way["amenity"="fast_food"](around:4828,${lat},${lng});
+  relation["amenity"="fast_food"](around:4828,${lat},${lng});
 
-  if (points.length > 0) {
-    map.fitBounds(points, {
-      padding: 50,
-      maxZoom: 16
+  node["amenity"="cafe"](around:4828,${lat},${lng});
+  way["amenity"="cafe"](around:4828,${lat},${lng});
+  relation["amenity"="cafe"](around:4828,${lat},${lng});
+);
+out center;
+`;
+
+  fetch("https://overpass-api.de/api/interpreter", {
+    method: "POST",
+    body: overpassQuery
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch locations.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      const matches = data.elements.filter((place) => {
+        if (!place.tags) return false;
+
+        const searchText = (
+          (place.tags.name || "") +
+          " " +
+          (place.tags.cuisine || "")
+        ).toLowerCase();
+
+        return searchText.includes(query.toLowerCase());
+      });
+
+      if (matches.length === 0) {
+        alert("No nearby " + query + " places found.");
+        return;
+      }
+
+      const bounds = [];
+
+      matches.forEach((place) => {
+
+        const placeLat = place.lat ?? place.center?.lat;
+        const placeLng = place.lon ?? place.center?.lon;
+
+        if (!placeLat || !placeLng) return;
+
+        bounds.push([placeLat, placeLng]);
+
+        const name = place.tags.name || "Unnamed Restaurant";
+        const cuisine = place.tags.cuisine || "Restaurant";
+
+        L.marker([placeLat, placeLng])
+          .bindPopup(`
+            <b>${name}</b><br>
+            ${cuisine}
+          `)
+          .addTo(markersGroup);
+      });
+
+      if (bounds.length > 0) {
+        map.fitBounds(bounds, {
+          padding: [50, 50],
+          maxZoom: 15
+        });
+      }
+
+    })
+    .catch((error) => {
+      console.error(error);
+      alert("Unable to load nearby restaurants.");
     });
-  }
-
-  localStorage.removeItem("selectedFood");
 }
 
 navigator.geolocation.getCurrentPosition(
+
   (position) => {
+
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
 
@@ -85,8 +117,19 @@ navigator.geolocation.getCurrentPosition(
       .addTo(map)
       .bindPopup("You are here!")
       .openPopup();
+
+    const selectedFood = localStorage.getItem("selectedFood");
+
+    if (selectedFood) {
+      fetchRealLocations(selectedFood, lat, lng);
+      localStorage.removeItem("selectedFood");
+    }
+
   },
-  () => {
-    console.warn("Location not available");
+
+  (error) => {
+    console.error(error);
+    alert("Please allow location access.");
   }
+
 );

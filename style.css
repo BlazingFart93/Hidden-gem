@@ -209,3 +209,8 @@
   background-position: center;
   background-repeat: no-repeat;
   }
+
+  .cards{
+    display: flex;
+    gap: 40px;
+  }
