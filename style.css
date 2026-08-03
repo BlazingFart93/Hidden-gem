@@ -201,16 +201,16 @@
     position: relative;
     left: 50%;
     top: -50px;
-  }  
-
-  body {
-  background-image: url('https://m.media-amazon.com/images/S/pv-target-images/feb16a362d15c841368af58e29a0efd044f89af63d0578de75fcffd67eebd0dd.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   }
 
-  .cards{
+  body {
+    background-image: url('https://m.media-amazon.com/images/S/pv-target-images/feb16a362d15c841368af58e29a0efd044f89af63d0578de75fcffd67eebd0dd.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .cards {
     display: flex;
     gap: 40px;
   }

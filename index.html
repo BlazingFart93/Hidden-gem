@@ -1,34 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="index.css" />
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Home</title>
+
 </head>
+
+
 <body>
 
-    <h1>Upcoming Features</h1>
-  
-  <section>
-<div class = "cards">
 
-<div class="card">
-  <h1>Favorite Restaurants</h1>
-  <p>Save your favorite restaurants directly from the map for quick and convenient access anytime. Build a personalized collection of hidden gems you can easily revisit.</p>
-</div>
+  <section class="hero">
 
-<div class="card">
-  <h1>Hidden Gem of the Week</h1>
-  <p>Discover the community's favorite hidden gem each week based on recent user activity. Stay up to date with trending local restaurants that are earning the most recognition.</p>
-</div>
 
-<div class="card">
-  <h1>Hidden Gem Generator</h1>
-  <p>Looking for something new? Press the Hidden Gem button to receive a randomly selected recommendation from the week's top 10 hidden gems, making it easy to discover your next favorite spot.</p>
-</div>
-</section>
+    <h1>
+      Discover Flavors. <br>
+      Savor Flavors. <br>
+      Collect Memories.
+    </h1>
+
+
+    <p>
+      Hidden Gems helps you uncover unique and unforgettable food spots near you.
+      Explore local favorites, hidden restaurants, and must-try dishes all near you.
+    </p>
+
+
+
+    <div class="buttons">
+
+
+      <button onclick="window.location.href = 'questions.html'">
+
+        Explore Food
+
+        <span>
+          <i class="fa-solid fa-location-dot"></i>
+        </span>
+
+      </button>
+
+
+
+      <button onclick="showRecommendations()">
+
+        Recommendations
+
+        <i class="fa-solid fa-bell-concierge"></i>
+
+      </button>
+
+
+    </div>
+
+
+
+    <div id="recommendationPopup" class="recommendation-popup"></div>
+
+
+  </section>
+
+
+
+
+  <section class="features">
+
+
+    <h2>Upcoming Features</h2>
+
+
+
+    <div class="feature-container">
+
+
+
+      <div class="feature-card">
+
+
+        <h3>Favorite Restaurants</h3>
+
+
+        <p>
+          Save and keep track of your favorite food spots so you can easily find them again.
+        </p>
+
+
+      </div>
+
+
+
+
+      <div class="feature-card">
+
+
+        <h3>Hidden Gem Of The Week</h3>
+
+
+        <p>
+          Discover a new underrated restaurant every week picked just for you.
+        </p>
+
+
+      </div>
+
+
+
+
+      <div class="feature-card">
+
+
+        <h3>Coming Soon</h3>
+
+
+        <p>
+          More exciting features are being worked on. Stay tuned for future updates!
+        </p>
+
+
+      </div>
+
+
+
+    </div>
+
+
+  </section>
+
+
+
+
+
+  <section class="gem-card">
+
+
+
+    <img
+      src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkT8-qep41WUY7q7efhFc8kSp6mt-xRVNvpZeFr756oqp9SYski05S9OvkjcMLKTI7OzEWGP3UEx7bFLAerJyVxs1YNSB_g-woe9UZPaqfbJdrLBJBegwBYOfbIDhauZOxSj2JaBGDXSncd=s680-w680-h510-rw"
+      alt="Snocorner">
+
+
+
+    <div class="gem-text">
+
+
+
+      <h2>Snocorner</h2>
+
+
+
+      <p>
+        Snocorner is a local favorite known for refreshing shaved ice,
+        sweet treats, and unique flavors that make it a must-try hidden gem.
+      </p>
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+  <script src="index.js"></script>
 
 
 </body>
+
+
 </html>
