@@ -258,3 +258,16 @@ h1 {
   line-height: 1.6;
 
 }
+
+.below {
+  background-image: url(Screenshot\ 2026-08-03\ at\ 10.17.10\ AM.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 140vh;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+  color: #2c180e;
+}
