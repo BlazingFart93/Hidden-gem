@@ -260,11 +260,12 @@ h1 {
 }
 
 .below {
-  background-image: url(Screenshot\ 2026-08-03\ at\ 10.17.10\ AM.png);
+  background-image: url(https://i.pinimg.com/1200x/6b/54/9e/6b549e456efca5959acb48210f53a446.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 140vh;
+  min-height: 100vh;
+  color: green;
 }
 
 h2 {
